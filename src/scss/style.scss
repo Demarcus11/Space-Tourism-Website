@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400&family=Barlow:wght@300;400;500;600;700&family=Bellefair&display=swap");
+
+:root {
+  --clr-nuetral-100: hsl(0, 0%, 100%);
+  --clr-nuetral-400: hsl(232, 17%, 73%);
+  --clr-nuetral-600: hsl(222, 8%, 31%);
+
+  --ff-primary: "Barlow", "sans-serif";
+  --ff-secondary: "Barlow Condensed", "serif";
+  --ff-accent: "Bellefair", "serif";
+
+  --fw-light: 300;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+$font-sizes: (
+  200: 0.5rem,
+  300: 0.75rem,
+  400: 1rem,
+  500: 1.125rem,
+  600: 1.25rem,
+  700: 1.5rem,
+  800: 1.75rem,
+  900: 2rem,
+);
+
+$desktop-breakpoint: 50em;
+$mobile-breakpoint: 35em;
+
+// CSS Reset
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin, Remove default padding, Reset all font sizes and make sure button, forms, etc inherit font */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100dvh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Utility Classes
+
+.grid-container {
+  display: grid;
+  // 4 columns, 2 outer columns can shrink down the 1rem and grow up to 1fr (padding columns), 2 inner columns can shrink down to 0 and grow up to 40rem (content columns)
+  grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+      1rem,
+      1fr
+    );
+}
+
+// General Styles
+
+body {
+  font-family: var(--ff-primary);
+  background-image: url("/assets/home/background-home-mobile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (min-width: $desktop-breakpoint) {
+  body {
+    background-image: url("/assets/home/background-home-desktop.jpg");
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+main {
+  min-height: 100dvh;
+}
+
+// Nav
+
+.primary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: clamp(1.5rem, 2vw, 3rem);
+  margin-inline: clamp(1rem, 5vw, 3rem);
+  position: relative;
+
+  .logo {
+    margin-right: clamp(1rem, 5vw, 3rem);
+  }
+}
+@media (min-width: $mobile-breakpoint) {
+  .primary-header {
+    margin-right: 0;
+  }
+}
+@media (min-width: $mobile-breakpoint) and (max-width: $desktop-breakpoint) {
+  .primary-header {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .primary-header::before {
+    content: "";
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background-color: hsl(0 0% 100% / 0.2);
+    order: 1;
+    margin-right: -2rem;
+    z-index: 20;
+  }
+
+  nav {
+    order: 2;
+  }
+}
+
+.primary-nav {
+  display: flex;
+  background-color: hsl(0 0% 0% / 0.9);
+  gap: clamp(1rem, 2vw, 3rem);
+
+  & li a {
+    padding-block: 2rem;
+    color: var(--clr-nuetral-100);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: var(--fw-light);
+    position: relative;
+    text-transform: uppercase;
+
+    &.active::after {
+      width: 100%;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--clr-nuetral-100);
+      transition: width 0.3s ease-in-out;
+    }
+    @media (max-width: $mobile-breakpoint) {
+      &::after {
+        display: none;
+      }
+    }
+
+    span {
+      margin-right: 0.5rem;
+    }
+    @media (min-width: $mobile-breakpoint) and (max-width: $desktop-breakpoint) {
+      span {
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 35em) {
+  .primary-nav {
+    padding: 2rem clamp(2rem, 7vw, 10rem) 2rem clamp(1rem, 7vw, 10rem);
+  }
+}
+@supports (backdrop-filter: blur(1rem)) {
+  .primary-nav {
+    background-color: hsl(0 0% 30% / 0.1);
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.nav-toggle {
+  display: none;
+  z-index: 100;
+  position: absolute;
+  border: 0;
+  right: 1rem;
+  top: 1rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .primary-nav {
+    position: fixed;
+    flex-direction: column;
+    inset: 0 0 0 30%;
+    padding: 7rem 2rem;
+    gap: 2rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .primary-nav[data-opened="true"] {
+    display: flex;
+  }
+  .primary-nav[data-opened="false"] {
+    display: none;
+  }
+}
