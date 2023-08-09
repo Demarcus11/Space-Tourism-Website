@@ -3,6 +3,7 @@
   --clr-nuetral-100: hsl(0, 0%, 100%);
   --clr-nuetral-400: hsl(232, 17%, 73%);
   --clr-nuetral-600: hsl(222, 8%, 31%);
+  --clr-nuetral-900: hsl(0, 0%, 0%);
   --ff-primary: "Barlow", "sans-serif";
   --ff-secondary: "Barlow Condensed", "serif";
   --ff-accent: "Bellefair", "serif";
@@ -75,11 +76,6 @@ svg {
     scroll-behavior: auto !important;
   }
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(1rem, 1fr);
-}
-
 body {
   font-family: var(--ff-primary);
   background-image: url("/assets/home/background-home-mobile.jpg");
@@ -96,10 +92,9 @@ ul {
   list-style: none;
 }
 
-main {
-  min-height: 100dvh;
-}
-
+/* ==================== */
+/* === Nav Styles === */
+/* ==================== */
 .primary-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -241,5 +236,84 @@ main {
   }
   .primary-nav[data-opened=false] {
     display: none;
+  }
+}
+/* ==================== */
+/* === Page Styles === */
+/* ==================== */
+.home {
+  color: var(--clr-nuetral-400);
+}
+
+.home__title {
+  font-family: var(--ff-secondary);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.home__title span {
+  display: block;
+  font-size: clamp(5rem, 10vw, 7rem);
+  font-family: var(--ff-accent);
+  color: var(--clr-nuetral-100);
+}
+
+.home__link {
+  display: block;
+  background-color: var(--clr-nuetral-100);
+  border-radius: 100vmax;
+  width: 12rem;
+  font-size: 1.5rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  text-decoration: none;
+  color: var(--clr-nuetral-900);
+  font-family: var(--ff-accent);
+  text-transform: uppercase;
+  margin-inline: auto;
+}
+
+/* ==================== */
+/* === Grid Layouts === */
+/* ==================== */
+div#root {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: -webkit-min-content 1fr;
+  grid-template-rows: min-content 1fr;
+}
+
+.grid-container {
+  display: grid;
+  row-gap: 10%;
+  place-items: center;
+  text-align: center;
+  padding-inline: 1rem;
+}
+
+.grid-container > * {
+  max-width: 50ch;
+}
+
+@media (min-width: 50em) {
+  .grid-container {
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
+    -ms-flex-line-pack: center;
+        align-content: center;
+    text-align: left;
+  }
+  .grid-container > :first-child {
+    grid-column: 2;
+  }
+  .grid-container > :last-child {
+    grid-column: 3;
+  }
+  .grid-container--home {
+    padding-bottom: 7rem;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: end;
+    place-content: end;
   }
 }

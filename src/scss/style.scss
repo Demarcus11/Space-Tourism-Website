@@ -4,6 +4,7 @@
   --clr-nuetral-100: hsl(0, 0%, 100%);
   --clr-nuetral-400: hsl(232, 17%, 73%);
   --clr-nuetral-600: hsl(222, 8%, 31%);
+  --clr-nuetral-900: hsl(0, 0%, 0%);
 
   --ff-primary: "Barlow", "sans-serif";
   --ff-secondary: "Barlow Condensed", "serif";
@@ -91,17 +92,6 @@ svg {
   }
 }
 
-// Utility Classes
-
-.grid-container {
-  display: grid;
-  // 4 columns, 2 outer columns can shrink down the 1rem and grow up to 1fr (padding columns), 2 inner columns can shrink down to 0 and grow up to 40rem (content columns)
-  grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
-      1rem,
-      1fr
-    );
-}
-
 // General Styles
 
 body {
@@ -120,11 +110,9 @@ ul {
   list-style: none;
 }
 
-main {
-  min-height: 100dvh;
-}
-
-// Nav
+/* ==================== */
+/* === Nav Styles === */
+/* ==================== */
 
 .primary-header {
   display: flex;
@@ -256,5 +244,92 @@ main {
   }
   .primary-nav[data-opened="false"] {
     display: none;
+  }
+}
+
+/* ==================== */
+/* === Page Styles === */
+/* ==================== */
+
+// Home
+
+.home {
+  color: var(--clr-nuetral-400);
+}
+
+.home__title {
+  font-family: var(--ff-secondary);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.home__title span {
+  display: block;
+  font-size: clamp(5rem, 10vw, 7rem);
+  font-family: var(--ff-accent);
+  color: var(--clr-nuetral-100);
+}
+
+.home__link {
+  display: block;
+  background-color: var(--clr-nuetral-100);
+  border-radius: 100vmax;
+  width: 12rem;
+  font-size: 1.5rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  text-decoration: none;
+  color: var(--clr-nuetral-900);
+  font-family: var(--ff-accent);
+  text-transform: uppercase;
+  margin-inline: auto;
+}
+
+/* ==================== */
+/* === Grid Layouts === */
+/* ==================== */
+
+div#root {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}
+
+.grid-container {
+  display: grid;
+  row-gap: 10%;
+  place-items: center; // center the grid items on mobile and tablet screens
+  text-align: center;
+  padding-inline: 1rem;
+}
+
+.grid-container > * {
+  max-width: 50ch;
+}
+
+// Base / Home Layout (if we don't have a specific grid container such as grid-container--crew than we use this one)
+
+@media (min-width: $desktop-breakpoint) {
+  .grid-container {
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2rem,
+        1fr
+      );
+    align-content: center;
+    text-align: left;
+  }
+
+  .grid-container > :first-child {
+    grid-column: 2;
+  }
+  .grid-container > :last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--home {
+    padding-bottom: 7rem;
+    align-items: end;
+    place-content: end;
   }
 }
