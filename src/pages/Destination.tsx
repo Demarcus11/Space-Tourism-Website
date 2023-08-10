@@ -24,25 +24,45 @@ function Destination() {
 
           <div className="tabs">
             <div>
-              <input id="tab-1" name="planet" type="radio" />
+              <input
+                id="tab-1"
+                name="planet"
+                type="radio"
+                aria-selected="true"
+              />
               <label className="tab" htmlFor="tab-1">
                 Moon
               </label>
             </div>
             <div>
-              <input id="tab-2" name="planet" type="radio" />
+              <input
+                id="tab-2"
+                name="planet"
+                type="radio"
+                aria-selected="true"
+              />
               <label className="tab" htmlFor="tab-2">
                 Mars
               </label>
             </div>
             <div>
-              <input id="tab-3" name="planet" type="radio" />
+              <input
+                id="tab-3"
+                name="planet"
+                type="radio"
+                aria-selected="true"
+              />
               <label className="tab" htmlFor="tab-3">
                 Europa
               </label>
             </div>
             <div>
-              <input id="tab-4" name="planet" type="radio" />
+              <input
+                id="tab-4"
+                name="planet"
+                type="radio"
+                aria-selected="true"
+              />
               <label className="tab" htmlFor="tab-4">
                 Titan
               </label>
