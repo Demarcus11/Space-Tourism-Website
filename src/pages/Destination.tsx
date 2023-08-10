@@ -9,7 +9,7 @@ function Destination() {
           <body className="destination"></body>
         </Helmet>
         <main className="destination | grid-container grid-container--destination">
-          <h1 className="destination__title">
+          <h1 className="title destination__title">
             <span>01</span>
             Pick Your Destination
           </h1>

@@ -130,6 +130,18 @@ svg {
   }
 }
 
+.title {
+  font-family: var(--ff-secondary);
+  color: var(--clr-nuetral-100);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  text-transform: uppercase;
+
+  span {
+    color: var(--clr-nuetral-600);
+    margin-right: 1rem;
+  }
+}
+
 /* ==================== */
 /* === General Styles === */
 /* ==================== */
@@ -364,18 +376,6 @@ ul {
     margin-top: 2em;
   }
 
-  &__title {
-    font-family: var(--ff-secondary);
-    color: var(--clr-nuetral-100);
-    font-size: clamp(1rem, 5vw, 1.5rem);
-    text-transform: uppercase;
-
-    span {
-      color: var(--clr-nuetral-600);
-      margin-right: 1rem;
-    }
-  }
-
   & .tabs {
     margin-block: 2em;
   }
@@ -415,6 +415,44 @@ ul {
     p {
       font-size: 2rem;
       font-family: var(--ff-accent);
+    }
+  }
+}
+
+// Crew
+
+.crew {
+  color: var(--clr-nuetral-400);
+
+  &__name {
+    font-family: var(--ff-accent);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--clr-nuetral-100);
+    text-transform: uppercase;
+
+    span {
+      display: block;
+      color: var(--clr-nuetral-400);
+      font-size: clamp(0.7rem, 5vw, 1.5rem);
+    }
+  }
+
+  &__text {
+    line-height: 2;
+    margin-block: 1em;
+  }
+
+  &__image {
+    img {
+      max-width: 60%;
+      margin-inline: auto;
+      margin-block: 2em;
+    }
+
+    @media (min-width: $mobile-breakpoint) {
+      img {
+        max-width: 90%;
+      }
     }
   }
 }
@@ -507,6 +545,53 @@ div#root {
   }
 }
 
+// Crew Layout
+.grid-container--crew {
+  row-gap: 0%;
+  padding-bottom: 6rem;
+}
+
+.crew {
+  &__image {
+    order: 1;
+  }
+
+  &__content {
+    order: 3;
+  }
+
+  &__dots {
+    order: 2;
+    margin-block: 1em;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .grid-container--crew {
+    column-gap: 10%;
+    place-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". content image ."
+      ". dots image .";
+
+    .crew__title {
+      grid-area: title;
+    }
+    .crew__image {
+      grid-area: image;
+      place-self: center;
+    }
+    .crew__content {
+      grid-area: content;
+      place-self: center;
+    }
+    .crew__dots {
+      grid-area: dots;
+    }
+  }
+}
+
 /* ==================== */
 /* === Animations === */
 /* ==================== */
@@ -520,5 +605,14 @@ div#root {
   }
   100% {
     box-shadow: 0px;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: 1000px;
   }
 }
