@@ -123,6 +123,27 @@ svg {
   margin-right: 1rem;
 }
 
+.dots {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+}
+.dots .dot {
+  width: 0.8rem;
+  aspect-ratio: 1;
+  border-radius: 100vmax;
+  background-color: var(--clr-nuetral-600);
+  border: 0;
+  cursor: pointer;
+}
+.dots .dot[aria-selected=true] {
+  background-color: var(--clr-nuetral-100);
+}
+.dots .dot:hover {
+  background-color: var(--clr-nuetral-100);
+}
+
 /* ==================== */
 /* === General Styles === */
 /* ==================== */
@@ -527,15 +548,29 @@ div#root {
   padding-bottom: 6rem;
 }
 
+.grid-container--crew.hidden {
+  display: none;
+}
+
 .crew__image {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+  pointer-events: none;
+  padding-bottom: 0;
+}
+.crew__image img {
+  border-bottom: 1px solid var(--clr-nuetral-600);
 }
 .crew__content {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+@media (max-width: 50em) {
+  .crew__content {
+    margin-block: 2em;
+  }
 }
 .crew__dots {
   -webkit-box-ordinal-group: 3;
@@ -546,9 +581,11 @@ div#root {
 
 @media (min-width: 50em) {
   .grid-container--crew {
+    overflow: hidden;
     -webkit-column-gap: 10%;
        -moz-column-gap: 10%;
             column-gap: 10%;
+    row-gap: 0;
     place-items: start;
     grid-template-areas: ". title title ." ". content image ." ". dots image .";
   }
@@ -561,10 +598,34 @@ div#root {
   }
   .grid-container--crew .crew__content {
     grid-area: content;
-    place-self: center;
+    place-self: end;
   }
   .grid-container--crew .crew__dots {
     grid-area: dots;
+    place-self: start;
+    align-self: center;
+  }
+}
+@media (min-width: 35em) {
+  .crew__title {
+    place-self: start;
+  }
+}
+@media (min-width: 35em) and (max-width: 50em) {
+  .crew__content {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .crew__dots {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .crew__image {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
 }
 /* ==================== */

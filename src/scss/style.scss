@@ -142,6 +142,28 @@ svg {
   }
 }
 
+.dots {
+  display: flex;
+  gap: 2rem;
+
+  .dot {
+    width: 0.8rem;
+    aspect-ratio: 1;
+    border-radius: 100vmax;
+    background-color: var(--clr-nuetral-600);
+    border: 0;
+    cursor: pointer;
+
+    &[aria-selected="true"] {
+      background-color: var(--clr-nuetral-100);
+    }
+
+    &:hover {
+      background-color: var(--clr-nuetral-100);
+    }
+  }
+}
+
 /* ==================== */
 /* === General Styles === */
 /* ==================== */
@@ -198,6 +220,7 @@ ul {
     margin-right: clamp(1rem, 5vw, 3rem);
   }
 }
+
 @media (min-width: $mobile-breakpoint) {
   .primary-header {
     margin-right: 0;
@@ -546,18 +569,35 @@ div#root {
 }
 
 // Crew Layout
+
 .grid-container--crew {
   row-gap: 0%;
   padding-bottom: 6rem;
 }
 
+.grid-container--crew.hidden {
+  display: none;
+}
+
 .crew {
   &__image {
     order: 1;
+    pointer-events: none;
+    padding-bottom: 0;
+
+    img {
+      border-bottom: 1px solid var(--clr-nuetral-600);
+    }
   }
 
   &__content {
     order: 3;
+  }
+
+  @media (max-width: $desktop-breakpoint) {
+    &__content {
+      margin-block: 2em;
+    }
   }
 
   &__dots {
@@ -568,7 +608,9 @@ div#root {
 
 @media (min-width: $desktop-breakpoint) {
   .grid-container--crew {
+    overflow: hidden;
     column-gap: 10%;
+    row-gap: 0;
     place-items: start;
     grid-template-areas:
       ". title title ."
@@ -584,11 +626,31 @@ div#root {
     }
     .crew__content {
       grid-area: content;
-      place-self: center;
+      place-self: end;
     }
     .crew__dots {
       grid-area: dots;
+      place-self: start;
+      align-self: center;
     }
+  }
+}
+
+@media (min-width: $mobile-breakpoint) {
+  .crew__title {
+    place-self: start;
+  }
+}
+
+@media (min-width: $mobile-breakpoint) and (max-width: $desktop-breakpoint) {
+  .crew__content {
+    order: 1;
+  }
+  .crew__dots {
+    order: 2;
+  }
+  .crew__image {
+    order: 3;
   }
 }
 
