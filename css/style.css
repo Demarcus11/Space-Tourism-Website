@@ -488,6 +488,10 @@ ul {
 .technology__dots .dot[aria-selected=true] {
   color: #000;
 }
+.technology__dots .dot:hover {
+  background-color: var(--clr-nuetral-100);
+  color: #000;
+}
 
 .technology__sub-title {
   font-family: var(--ff-accent);

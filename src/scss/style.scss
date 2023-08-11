@@ -498,6 +498,11 @@ ul {
     &[aria-selected="true"] {
       color: #000;
     }
+
+    &:hover {
+      background-color: var(--clr-nuetral-100);
+      color: #000;
+    }
   }
 }
 
