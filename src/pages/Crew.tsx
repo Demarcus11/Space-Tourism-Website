@@ -91,6 +91,7 @@ export default function Crew() {
                 activeSlide={activeSlide}
                 handleDotClick={handleDotClick}
                 slides={slides}
+                className="crew__dots"
               />
 
               <picture className="crew__image">
