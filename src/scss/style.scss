@@ -328,6 +328,8 @@ ul {
     inset: 0 0 0 30%;
     padding: 7rem 2rem;
     gap: 2rem;
+    transform: translateX(0);
+    opacity: 1;
   }
 
   .nav-toggle {
@@ -350,6 +352,7 @@ ul {
 
 .home {
   color: var(--clr-nuetral-400);
+  padding-bottom: 6rem;
 }
 
 .home__title {

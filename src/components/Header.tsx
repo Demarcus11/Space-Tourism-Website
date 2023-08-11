@@ -1,7 +1,21 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useMediaQuery } from "../util/useMediaQuery";
 
 export default function Nav() {
+  const matches = useMediaQuery("(max-width: 560px)");
+
+  const variants = matches
+    ? {
+        open: { opacity: 1, x: 0 },
+        closed: { opacity: 0, x: "100%" },
+      }
+    : {
+        open: { opacity: 1, x: 0 },
+        closed: { opacity: 1, x: 0 },
+      };
+
   const [navOpened, setNavOpened] = useState(false);
 
   const links = [
@@ -32,7 +46,9 @@ export default function Nav() {
         </button>
 
         <nav>
-          <ul
+          <motion.ul
+            animate={navOpened ? "open" : "closed"}
+            variants={variants}
             className="primary-nav"
             data-opened={navOpened ? "true" : "false"}
           >
@@ -50,7 +66,7 @@ export default function Nav() {
                 </NavLink>
               </li>
             ))}
-          </ul>
+          </motion.ul>
         </nav>
       </header>
     </>

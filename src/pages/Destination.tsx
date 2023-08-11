@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Tabs from "../components/Tabs";
+import { motion } from "framer-motion";
 
 function Destination() {
+  const variants = {
+    show: {
+      opacity: 1,
+      display: "block",
+      scale: 1,
+      transition: { duration: 0.5 },
+    },
+    hidden: { opacity: 0, display: "none", scale: 0 },
+  };
+
   const slidesArray = [
     {
       id: 0,
@@ -60,8 +71,6 @@ function Destination() {
     setSlides(updatedSlides);
   };
 
-  console.log(slides);
-
   return (
     <>
       <HelmetProvider>
@@ -80,7 +89,13 @@ function Destination() {
               activeSlide === slide.id && (
                 <picture className="destination__image" key={slide.id}>
                   <source srcSet={slide.imageWebp} type="image/webp" />
-                  <img src={slide.image} alt="the moon" />
+                  <motion.img
+                    src={slide.image}
+                    alt="the moon"
+                    initial={{ scale: 0 }} // Initial scale when component first renders
+                    animate={{ scale: 1 }} // Scale to 1 when activeSlide matches slide.id
+                    transition={{ duration: 1 }} // Animation duration
+                  />
                 </picture>
               )
           )}
@@ -95,23 +110,55 @@ function Destination() {
             {slides.map(
               (slide) =>
                 activeSlide === slide.id && (
-                  <div key={slide.id}>
+                  <motion.div key={slide.id}>
                     <div>
-                      <h2 className="destination__category">{slide.title}</h2>
-                      <p className="destination__text">{slide.text}</p>
+                      <motion.h2
+                        className="destination__category"
+                        initial={{ opacity: 0, y: "-30%" }} // Initial scale when component first renders
+                        animate={{ opacity: 1, y: 0 }} // Scale to 1 when activeSlide matches slide.id
+                        transition={{ duration: 1 }} // Animation duration
+                      >
+                        {slide.title}
+                      </motion.h2>
+                      <motion.p
+                        className="destination__text"
+                        initial={{ opacity: 0, y: "-30%" }} // Initial scale when component first renders
+                        animate={{ opacity: 1, y: 0 }} // Scale to 1 when activeSlide matches slide.id
+                        transition={{ duration: 1 }} // Animation duration
+                      >
+                        {slide.text}
+                      </motion.p>
                     </div>
                     <div className="destination__stats">
                       <div>
-                        <h3>Avg. Distance</h3>
-                        <p>{slide.averageDistance}</p>
+                        <motion.h3
+                          initial={{ opacity: 0, y: "-30%" }} // Initial scale when component first renders
+                          animate={{ opacity: 1, y: 0 }} // Scale to 1 when activeSlide matches slide.id
+                          transition={{ duration: 1 }} // Animation duration
+                        >
+                          Avg. Distance
+                        </motion.h3>
+                        <motion.p
+                          initial={{ opacity: 0, y: "-30%" }} // Initial scale when component first renders
+                          animate={{ opacity: 1, y: 0 }} // Scale to 1 when activeSlide matches slide.id
+                          transition={{ duration: 1 }} // Animation duration
+                        >
+                          {slide.averageDistance}
+                        </motion.p>
                       </div>
 
                       <div>
-                        <h3>Est. Travel Time</h3>
+                        <motion.h3
+                          initial={{ opacity: 0, y: "-30%" }} // Initial scale when component first renders
+                          animate={{ opacity: 1, y: 0 }} // Scale to 1 when activeSlide matches slide.id
+                          transition={{ duration: 1 }} // Animation duration
+                        >
+                          Est. Travel Time
+                        </motion.h3>
                         <p>{slide.estimatedTravelTime}</p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 )
             )}
           </article>
