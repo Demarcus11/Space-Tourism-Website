@@ -93,7 +93,7 @@ svg {
   pointer-events: none;
   opacity: 0;
 }
-.tabs input[type=radio]:checked + label {
+.tabs input[type=radio][aria-selected=true] + label {
   border-bottom: 3px solid var(--clr-nuetral-100);
   border-spacing: 1rem;
   padding-bottom: 0.5rem;
